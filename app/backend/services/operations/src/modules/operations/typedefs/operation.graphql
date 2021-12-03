@@ -1,0 +1,21 @@
+scalar Date
+
+type Operation @key(fields: "sign"){
+    sign: ID!
+    begin: Date!,
+    end: Date,
+    archived: Boolean
+    location: String
+}
+
+type Query {
+    operation(sign: ID!): Operation
+    activeOperations: [Operation]
+    archivedOperations: [Operation]
+}
+
+type Mutation {
+    createOngoingOperation(location: String!): Operation
+    createFutureOperation(begin: Date!, end: Date, location: String): Operation
+    createPastOperation(begin: Date!, end: Date!, location: String): Operation
+}
