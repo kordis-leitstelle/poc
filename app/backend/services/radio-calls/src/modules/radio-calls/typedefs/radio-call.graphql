@@ -1,0 +1,40 @@
+scalar Date
+
+enum Sort {
+    asc
+    desc
+}
+
+input RadioCallSort {
+    time: Sort
+}
+
+input Filter {
+    sendingUnit: String
+    receivingUnit: String
+}
+
+input CreateRadioCall {
+    sendingUnit: String!
+    receivingUnit: String!
+    message: String!
+}
+
+type RadioCall @key(fields: "id") {
+    id: ID!
+    sendingUnit: String!
+    receivingUnit: String!
+    time: Date!
+    message: String!
+    archived: Boolean
+}
+
+
+type Mutation {
+    createRadioCall(sendingUnit: String!, receivingUnit: String!, message: String): RadioCall
+}
+
+type Query {
+    activeRadioCalls(sort: RadioCallSort, filter: Filter): [RadioCall]
+    archivedRadioCalls(sort: RadioCallSort, filter: Filter): [RadioCall]
+}

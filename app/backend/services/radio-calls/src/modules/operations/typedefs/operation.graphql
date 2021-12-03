@@ -1,0 +1,8 @@
+scalar Date
+
+extend type Operation @key(fields: "sign")  {
+    sign: ID! @external
+    begin: Date! @external
+    end: Date @external
+    radioCalls: [RadioCall] @requires(fields: "begin end")
+}
