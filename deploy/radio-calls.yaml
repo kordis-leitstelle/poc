@@ -1,0 +1,26 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: krd-radio-calls
+  labels:
+    app: radio-calls
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: radio-calls
+  template:
+    metadata:
+      labels:
+        app: radio-calls
+      annotations:
+        dapr.io/enabled: "true"
+        dapr.io/app-id: "krd-radio-calls"
+        dapr.io/app-port: "8080"
+    spec:
+      containers:
+        - name: radio-calls
+          image: krd-radio-calls-service:latest
+          ports:
+            - containerPort: 8080
+          imagePullPolicy: Never
