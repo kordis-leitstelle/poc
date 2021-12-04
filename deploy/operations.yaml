@@ -1,0 +1,26 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: krd-operations
+  labels:
+    app: operations
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: operations
+  template:
+    metadata:
+      labels:
+        app: operations
+      annotations:
+        dapr.io/enabled: "true"
+        dapr.io/app-id: "krd-operations"
+        dapr.io/app-port: "8080"
+    spec:
+      containers:
+        - name: operations
+          image: krd-operations-service:latest
+          ports:
+            - containerPort: 8080
+          imagePullPolicy: Never
