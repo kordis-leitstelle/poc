@@ -4,12 +4,14 @@ WORKDIR /usr/source/
 
 COPY package*.json ./
 
-RUN npm i --legacy-peer-deps
+RUN npm ci --legacy-peer-deps
 
 COPY src ./src
 COPY tsconfig*.json ./
 
 RUN npm run build
+
+RUN npm prune --production
 
 FROM base
 
