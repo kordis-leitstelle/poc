@@ -20,6 +20,6 @@ WORKDIR /usr/app/
 COPY --from=base /usr/source/node_modules ./node_modules
 COPY --from=base /usr/source/dist ./dist
 
-EXPOSE 8080
+EXPOSE 4002
 
 CMD ["node", "./dist/main.js"]
