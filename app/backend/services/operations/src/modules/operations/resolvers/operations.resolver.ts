@@ -23,6 +23,11 @@ export class OperationsResolver {
     }
 
     @Query()
+    async operations(): Promise<Operation[]> {
+        return this.operationService.findAll();
+    }
+
+    @Query()
     async archivedOperations(): Promise<Operation[]> {
         return this.operationService.findArchived();
     }

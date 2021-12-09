@@ -1,15 +1,23 @@
 scalar Date
 
+
+type _Events {
+    """{"trigger":"ACTIVE_OPERATION_CREATED","query":"operation"}"""
+    activeOperationCreated: Operation
+}
+
+
 type Operation @key(fields: "sign"){
     sign: ID!
-    begin: Date!,
-    end: Date,
+    begin: Date!
+    end: Date
     archived: Boolean
     location: String
 }
 
 type Query {
     operation(sign: ID!): Operation
+    operations: [Operation]
     activeOperations: [Operation]
     archivedOperations: [Operation]
 }

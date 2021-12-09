@@ -3,12 +3,10 @@ import {AppController} from './app.controller';
 import {AppService} from './app.service';
 import {GraphQLFederationModule} from '@nestjs/graphql'
 import {OperationsModule} from './modules/operations/operations.module';
-import { CommonModule } from './modules/common/common.module';
-import {ConfigModule} from "@nestjs/config";
+import {CommonModule} from './modules/common/common.module';
 
 @Module({
     imports: [
-        ConfigModule.forRoot(),
         GraphQLFederationModule.forRoot({
             typePaths: ['**/*.graphql'],
             context: ({req}) => {
@@ -26,7 +24,7 @@ import {ConfigModule} from "@nestjs/config";
                 req.user = user;
 
                 return req;
-            },
+            }
         }),
         OperationsModule,
         CommonModule

@@ -1,5 +1,6 @@
 import {Injectable} from '@nestjs/common';
 import {Operation} from "../models/operation.model";
+import {DaprService} from "../../common/services/dapr.service";
 
 @Injectable()
 export class OperationsService {
@@ -28,13 +29,18 @@ export class OperationsService {
         {sign: "6", begin: new Date(2021, 6, 18, 14, 39, 7), location: ""},
     ];
 
-    createOngoing(location: string): Operation {
+    constructor(private readonly daprService: DaprService)   {
+    }
+
+    async createOngoing(location: string): Promise<Operation> {
         const operation = {
             begin: new Date(),
             location,
             sign: this.generateSign()
         }
         this.operations.push(operation);
+
+        await this.daprService.publish("ACTIVE_OPERATION_CREATED", operation);
 
         return operation;
     }
