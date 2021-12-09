@@ -1,0 +1,45 @@
+{
+  "name": "gateway",
+  "version": "1.0.0",
+  "description": "Kordis GraphQl entrypoint",
+  "main": "dist/index.js",
+  "scripts": {
+    "build:prod": "tsc && npm prune --production",
+    "build:dev": "tsc",
+    "start:prod": "npm run build:prod && node dist/index.js",
+    "start:dev": "npm run build:dev && node dist/index.js",
+    "start:dapr": "npm run build:dev && dapr run --app-id gateway --app-port 3501 node dist/index.js",
+    "test": "jest --coverage"
+  },
+  "author": "",
+  "license": "ISC",
+  "devDependencies": {
+    "@types/jest": "^27.0.3",
+    "@types/node": "^16.11.9",
+    "@types/ws": "^8.2.2",
+    "jest": "^27.4.3",
+    "nodemon": "^2.0.15",
+    "ts-jest": "^27.1.1",
+    "ts-node": "^10.4.0",
+    "typescript": "^4.5.2"
+  },
+  "dependencies": {
+    "@apollo/gateway": "^0.44.0",
+    "@newrelic/apollo-server-plugin": "^1.1.2",
+    "apollo-server": "^3.5.0",
+    "apollo-server-core": "^3.5.0",
+    "apollo-server-env": "^4.2.0",
+    "apollo-server-fastify": "^3.5.0",
+    "dapr-client": "^1.0.2",
+    "deepmerge-ts": "^1.1.5",
+    "dotenv": "^10.0.0",
+    "fastify": "^3.24.0",
+    "fastify-cors": "^6.0.2",
+    "fastify-helmet": "^5.3.2",
+    "fastify-websocket": "^4.0.0",
+    "graphql": "^15.7.2",
+    "graphql-subscriptions": "^2.0.0",
+    "graphql-ws": "^5.5.5",
+    "ws": "^8.3.0"
+  }
+}

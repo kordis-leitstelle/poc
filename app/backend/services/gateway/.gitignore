@@ -1,0 +1,8 @@
+node_modules/
+coverage
+dist/
+.npm
+.eslintcache
+.DS_Store
+.env
+newrelic_agent.log

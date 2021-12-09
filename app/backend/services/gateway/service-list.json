@@ -1,0 +1,10 @@
+[
+  {
+    "name": "operations",
+    "url": "http://localhost:4001/graphql"
+  },
+  {
+    "name": "radio-calls",
+    "url": "http://localhost:4002/graphql"
+  }
+]
